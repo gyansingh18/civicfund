@@ -1,18 +1,19 @@
-<h1>Admin Dashboard</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Project</th>
-      <th>Total Allocated ($)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @projects.each do |project| %>
+<div class="container mt-4">
+  <h2 class="mb-4">Admin Dashboard</h2>
+  <table class="table table-striped table-bordered">
+    <thead class="table-dark">
       <tr>
-        <td><%= project.name %></td>
-        <td><%= project.allocations.sum(:amount) %></td>
+        <th>Project</th>
+        <th>Total Allocated ($)</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @project_totals.each do |data| %>
+        <tr>
+          <td><%= data[:project].name %></td>
+          <td><%= data[:total] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

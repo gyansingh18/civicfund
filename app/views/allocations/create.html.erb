@@ -1,2 +1,7 @@
-<h1>Allocations#create</h1>
-<p>Find me in app/views/allocations/create.html.erb</p>
+<div class="allocation-success-container">
+  <h1>🎉 Allocation Submitted Successfully!</h1>
+
+  <p>Thank you for participating in the CivicFund budget allocation.</p>
+
+  <%= link_to "View Summary", allocation_path(@allocation), class: "btn-back" %>
+</div>

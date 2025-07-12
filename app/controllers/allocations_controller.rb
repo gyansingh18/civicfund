@@ -6,6 +6,11 @@ class AllocationsController < ApplicationController
   end
 
   def create
+    if params[:allocations].blank?
+      flash[:alert] = "Please allocate at least one amount."
+      return redirect_to new_allocation_path
+    end
+
     allocations = []
     total = 0
 
@@ -17,8 +22,12 @@ class AllocationsController < ApplicationController
       allocations << { project_id: project_id, amount: amount }
     end
 
-    if total > 1000
-      redirect_to new_allocation_path, alert: "Allocation exceeds $1000!"
+    if allocations.empty?
+      flash[:alert] = "Please allocate at least one amount."
+      redirect_to new_allocation_path
+    elsif total > 1000
+      flash[:alert] = "Allocation exceeds $1000!"
+      redirect_to new_allocation_path
     else
       allocations.each do |data|
         Allocation.create!(
@@ -30,6 +39,8 @@ class AllocationsController < ApplicationController
       redirect_to allocation_path(current_user.id)
     end
   end
+
+
 
   def show
     @allocations = current_user.allocations.includes(:project)

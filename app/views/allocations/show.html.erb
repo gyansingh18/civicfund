@@ -1,14 +1,18 @@
-<h1>Your Allocation Summary</h1>
+<div class="allocation-summary-container">
+  <h1>Your Allocation Summary</h1>
 
-<ul>
-  <% @allocations.each do |allocation| %>
-    <li>
-      <strong><%= allocation.project.name %></strong> — $<%= allocation.amount %>
-    </li>
-  <% end %>
-</ul>
+  <ul class="allocation-list">
+    <% @allocations.each do |allocation| %>
+      <li>
+        <strong><%= allocation.project.name %></strong> — $<%= allocation.amount %>
+      </li>
+    <% end %>
+  </ul>
 
-<p><strong>Total Allocated:</strong> $<%= @allocations.sum(&:amount) %></p>
-<p><strong>Remaining Budget:</strong> $<%= 1000 - @allocations.sum(&:amount) %></p>
+  <div class="allocation-totals">
+    <p><strong>Total Allocated:</strong> $<%= @allocations.sum(&:amount) %></p>
+    <p><strong>Remaining Budget:</strong> $<%= 1000 - @allocations.sum(&:amount) %></p>
+  </div>
 
-<%= link_to "Back to Projects", projects_path %>
+  <%= link_to "Back to Projects", projects_path, class: "btn-back" %>
+</div>
