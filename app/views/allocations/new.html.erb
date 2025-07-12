@@ -1,0 +1,17 @@
+<h1>Allocate Your 1000$ budget</h1>
+
+<%= form_with url: allocations_path, method: :post do%>
+  <div data-controller="budget">
+    <% @projects.each do |project| %>
+      <div>
+        <label><%= project.name %> ($<%= project.cost %>)</label>
+        <%= number_field_tag "allocations[#{project.id}]", 0, data: { action: "input->budget#update"}%>
+      </div>
+    <% end %>
+
+    <p>Total Allocated: $<span data-budget-target="total">0</span></p>
+    <p>Remaining: $<span data-budget-target="remaining">1000</span></p>
+
+    <%= submit_tag "Submit Allocation" %>
+  </div>
+<% end %>

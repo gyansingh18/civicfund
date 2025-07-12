@@ -1,0 +1,14 @@
+<h1>Your Allocation Summary</h1>
+
+<ul>
+  <% @allocations.each do |allocation| %>
+    <li>
+      <strong><%= allocation.project.name %></strong> — $<%= allocation.amount %>
+    </li>
+  <% end %>
+</ul>
+
+<p><strong>Total Allocated:</strong> $<%= @allocations.sum(&:amount) %></p>
+<p><strong>Remaining Budget:</strong> $<%= 1000 - @allocations.sum(&:amount) %></p>
+
+<%= link_to "Back to Projects", projects_path %>
