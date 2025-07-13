@@ -1,24 +1,53 @@
-# README
+# CivicFund — Participatory Budgeting App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+CivicFund is a Rails application designed to promote community engagement in local governance. It enables residents to allocate a $1000 budget across predefined community projects and helps administrators track the total allocated funds.
 
-Things you may want to cover:
+## 🚀 Features
 
-* Ruby version
+### Resident Functionality
+- **User Authentication:** Sign up, log in, and log out using Devise.
+- **Budget Allocation Form:**
+  - See a list of community projects with their required funding.
+  - Allocate a custom amount to each project using a $1000 personal budget.
+  - Real-time tracking of total and remaining budget via StimulusJS.
+  - Validation to prevent allocating more than $1000.
+- **Allocation Summary Page:**
+  - Displays individual allocations and remaining budget after submission.
 
-* System dependencies
+### Admin Functionality
+- **Admin Dashboard:**
+  - View a summary table showing the total amount allocated to each project by all residents.
 
-* Configuration
+## 🧱 Tech Stack
 
-* Database creation
+- **Ruby on Rails 7**
+- **PostgreSQL**
+- **Devise** (for authentication)
+- **StimulusJS** (for real-time budget updates)
+- **Bootstrap 5** (for styling)
 
-* Database initialization
+## 📸 Screenshots
 
-* How to run the test suite
+### Resident Allocation Form  
+Real-time budget tracking while entering values.
 
-* Services (job queues, cache servers, search engines, etc.)
+### Allocation Summary  
+Post-submission view of the resident’s choices.
 
-* Deployment instructions
+### Admin Dashboard  
+Project-wise aggregation of total allocated funds.
 
-* ...
+## 📁 Model Structure
+
+- **User:** Managed by Devise.
+- **Project:** `name:string`, `cost:integer`
+- **Allocation:** `user_id`, `project_id`, `amount:integer`
+
+## 📌 How to Run Locally
+
+```bash
+git clone https://github.com/your-username/civicfund.git
+cd civicfund
+bundle install
+rails db:setup
+rails s
